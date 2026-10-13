@@ -20,7 +20,7 @@ export default function DotRipple({
   speed = 420,
   amplitude = 16,
   width = 90,
-  dotSize = 2,
+  dotSize = 2.4,
 }) {
   const ref = useCanvas({
     deps: [spacing, dotSize],
@@ -75,7 +75,7 @@ export default function DotRipple({
         if (s <= 0.12) continue;
         const lift = push * amplitude;
 
-        ctx.globalAlpha = clamp(0.24 + Math.abs(push) * 0.76, 0, 1);
+        ctx.globalAlpha = clamp(0.42 + Math.abs(push) * 0.58, 0, 1);
         ctx.beginPath();
         ctx.arc(d.x, d.y - lift, s, 0, TAU);
         ctx.fill();

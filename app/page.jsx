@@ -21,7 +21,7 @@ export default function Home() {
 
       <div className="feed">
         {EFFECTS.map((e) => {
-          const vars = cardVars(e.card.bg, e.card.ink);
+          const vars = cardVars(e.card.bg, e.card.ink, e.card.ac);
           // Ratios wider than ~2.4:1 collapse on a narrow phone; the
           // stylesheet floors those, flagged here.
           const [w, h] = e.aspect.split('/').map(Number);
