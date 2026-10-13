@@ -10,6 +10,7 @@ function Placeholder() {
 }
 
 const MAP = {
+  'flood-type': dynamic(() => import('./effects/FloodType'), { ssr: false, loading: Placeholder }),
   'ember-type': dynamic(() => import('./effects/EmberType'), { ssr: false, loading: Placeholder }),
   'cascade-menu': dynamic(() => import('./effects/CascadeMenu'), { ssr: false, loading: Placeholder }),
   'ribbon-type': dynamic(() => import('./effects/RibbonType'), { ssr: false, loading: Placeholder }),
