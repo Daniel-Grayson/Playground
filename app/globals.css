@@ -1,5 +1,5 @@
 :root {
-  --bg: #fbfbfa;
+  --bg: #ffffff;
   --surface: #ffffff;
   --surface-2: #f4f4f2;
   --border: #e5e4e0;
@@ -67,74 +67,84 @@ a { color: inherit; }
   color: var(--text-3);
 }
 
-/* --- gallery ---------------------------------------------------------- */
+/* --- gallery -----------------------------------------------------------
+   One centred column of large cards, rather than a dense grid: each effect
+   gets the room to actually be looked at, and only one or two canvases are
+   on screen at a time, so fewer of them run at once.                      */
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+.feed {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
 }
 
-.card {
+.feed-item {
   display: block;
   text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  overflow: hidden;
-  transition: border-color 0.18s ease, transform 0.18s ease;
+  color: inherit;
 }
 
-.card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-}
-
-.card-stage {
-  aspect-ratio: 4 / 3;
-  background: var(--surface-2);
+.feed-stage {
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
+  background: var(--surface-2);
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  transition: transform 0.25s ease;
 }
 
-.card-meta {
+.feed-item:hover .feed-stage {
+  transform: translateY(-3px);
+}
+
+.feed-caption {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px 14px;
-  border-top: 1px solid var(--border);
+  gap: 16px;
+  margin-top: 14px;
+  padding: 0 4px;
 }
 
-.card-title {
-  font-size: 14px;
+.feed-title {
+  font-size: 15px;
   font-weight: 560;
   letter-spacing: -0.01em;
 }
 
-.card-blurb {
-  margin: 4px 0 0;
-  font-size: 12.5px;
-  line-height: 1.45;
+.feed-blurb {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--text-2);
+  max-width: 54ch;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag {
+.feed-index {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--text-3);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px 7px;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.feed-item:focus-visible .feed-stage {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .feed { gap: 48px; }
+  .feed-stage { aspect-ratio: 4 / 3; border-radius: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feed-stage { transition: none; }
+  .feed-item:hover .feed-stage { transform: none; }
 }
 
 /* --- controls --------------------------------------------------------- */

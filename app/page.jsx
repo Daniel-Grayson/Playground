@@ -3,65 +3,52 @@ import { EFFECTS, CATEGORIES } from '@/lib/registry';
 import EffectLoader from '@/components/EffectLoader';
 
 export default function Home() {
-  const groups = Object.keys(CATEGORIES).map((key) => ({
-    key,
-    label: CATEGORIES[key],
-    items: EFFECTS.filter((e) => e.category === key),
-  }));
-
   return (
-    <main className="wrap" style={{ paddingTop: 72, paddingBottom: 96 }}>
-      <header style={{ maxWidth: 620, marginBottom: 56 }}>
-        <h1 style={{ fontSize: 38, fontWeight: 650, letterSpacing: '-0.03em', margin: 0 }}>
+    <main className="wrap" style={{ paddingTop: 64, paddingBottom: 120 }}>
+      <header
+        style={{
+          maxWidth: 1040,
+          margin: '0 auto 56px',
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          gap: 24,
+        }}
+      >
+        <h1 style={{ fontSize: 20, fontWeight: 600, letterSpacing: '-0.02em', margin: 0 }}>
           Vault
         </h1>
-        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--text-2)', marginTop: 14 }}>
-          Interactive studies, built from scratch. Each one is a single React component
-          with no dependencies beyond React itself — canvas, WebGL or plain DOM — and
-          each is written to be lifted straight into a portfolio.
-        </p>
-        <p style={{ fontSize: 13.5, lineHeight: 1.6, color: 'var(--text-3)', marginTop: 12 }}>
-          Every effect pauses when it scrolls out of view and renders a single static
-          frame under <code>prefers-reduced-motion</code>.
-        </p>
+        <span className="mono">{EFFECTS.length} studies</span>
       </header>
 
-      {groups.map((g) => (
-        <section key={g.key} style={{ marginBottom: 52 }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              justifyContent: 'space-between',
-              marginBottom: 16,
-            }}
-          >
-            <h2 className="mono" style={{ margin: 0, fontSize: 11 }}>{g.label}</h2>
-            <span className="mono">{String(g.items.length).padStart(2, '0')}</span>
-          </div>
+      <div className="feed">
+        {EFFECTS.map((e, i) => (
+          <Link key={e.slug} href={`/vault/${e.slug}`} className="feed-item">
+            <div className="feed-stage">
+              <EffectLoader slug={e.slug} />
+            </div>
+            <div className="feed-caption">
+              <div>
+                <div className="feed-title">{e.title}</div>
+                <p className="feed-blurb">{e.blurb}</p>
+              </div>
+              <span className="feed-index">
+                {String(i + 1).padStart(2, '0')} · {CATEGORIES[e.category]}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
 
-          <div className="grid">
-            {g.items.map((e) => (
-              <Link key={e.slug} href={`/vault/${e.slug}`} className="card">
-                <div className="card-stage">
-                  <EffectLoader slug={e.slug} />
-                </div>
-                <div style={{ padding: '12px 14px 14px', borderTop: '1px solid var(--border)' }}>
-                  <div className="card-title">{e.title}</div>
-                  <p className="card-blurb">{e.blurb}</p>
-                  <div className="tags" style={{ marginTop: 10 }}>
-                    {e.tags.map((tag) => (
-                      <span className="tag" key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      ))}
-
-      <footer className="mono" style={{ paddingTop: 28, borderTop: '1px solid var(--border)' }}>
+      <footer
+        className="mono"
+        style={{
+          maxWidth: 1040,
+          margin: '96px auto 0',
+          paddingTop: 28,
+          borderTop: '1px solid var(--border)',
+        }}
+      >
         MIT — free to copy
       </footer>
     </main>
