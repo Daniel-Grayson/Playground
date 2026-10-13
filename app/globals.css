@@ -1,0 +1,249 @@
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f2;
+  --border: #e5e4e0;
+  --border-strong: #d2d1cc;
+  --text: #16150f;
+  --text-2: #5f5d55;
+  --text-3: #8f8d84;
+  --accent: #1b1a16;
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0c0c0b;
+    --surface: #141413;
+    --surface-2: #1c1c1a;
+    --border: #262523;
+    --border-strong: #37352f;
+    --text: #f5f4f0;
+    --text-2: #a4a199;
+    --text-3: #6f6d66;
+    --accent: #f5f4f0;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0c0c0b;
+  --surface: #141413;
+  --surface-2: #1c1c1a;
+  --border: #262523;
+  --border-strong: #37352f;
+  --text: #f5f4f0;
+  --text-2: #a4a199;
+  --text-3: #6f6d66;
+  --accent: #f5f4f0;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* --- gallery ---------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.card-stage {
+  aspect-ratio: 4 / 3;
+  background: var(--surface-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+}
+
+.card-blurb {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+
+/* --- controls --------------------------------------------------------- */
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 16px;
+}
+
+.ctl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 14px;
+}
+
+.ctl:last-child { margin-bottom: 0; }
+
+.ctl-label {
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.ctl-value {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.ctl input[type='range'] {
+  grid-column: 1 / -1;
+  width: 100%;
+  accent-color: var(--text);
+  height: 18px;
+}
+
+.ctl input[type='text'] {
+  grid-column: 1 / -1;
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.ctl input[type='text']:focus-visible,
+.btn:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--surface-2); }
+
+.stage {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+/* min-height and aspect-ratio together resolve by widening the box, which
+   overflows a narrow viewport — so the floor only applies once there is room
+   for it. */
+@media (min-width: 761px) {
+  .stage { min-height: 320px; }
+}
+
+@media (max-width: 760px) {
+  .stage { aspect-ratio: 4 / 3; }
+}
+
+canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}
+
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 270px);
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .studio { grid-template-columns: minmax(0, 1fr); }
+}
