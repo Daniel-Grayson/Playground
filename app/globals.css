@@ -90,11 +90,32 @@ a { color: inherit; }
 
 .feed-card {
   position: relative;
+  display: block;
   width: 100%;
+  padding: 0;
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--card-line, #f0f0f0);
   background: var(--card-bg, #f7f7f7);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: transform 0.22s ease;
+}
+
+.feed-card:hover { transform: translateY(-2px); }
+.feed-card:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+
+/* The column stays put behind the overlay — blurred and washed back, so you
+   keep your place instead of being taken somewhere else. */
+.feed {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.feed[data-dimmed] {
+  filter: blur(7px) saturate(0.55);
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 /* Portrait phones: very wide cards get too short to read, so floor them. */
@@ -233,4 +254,132 @@ canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 
 @media (max-width: 860px) {
   .studio { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* Pills for an effect's techniques. These are used by the lightbox; they
+   were lost when the gallery CSS was rewritten, which ran the words
+   together into one string. */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+/* --- lightbox ---------------------------------------------------------- */
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: max(24px, env(safe-area-inset-top, 0px)) 16px 0;
+}
+
+.lb-scrim {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  cursor: zoom-out;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+}
+
+.lb-inner {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  margin: auto;
+  padding-bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: lb-rise 0.26s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+@keyframes lb-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.lb-stage {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 70px -28px rgba(0, 0, 0, 0.45);
+}
+
+.lb-text { max-width: 64ch; }
+
+.lb-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.lb-title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.lb-how {
+  margin: 10px 0 14px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+.lb-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.lb-nav button {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.3);
+}
+
+.lb-nav button:hover { background: var(--surface-2); color: var(--text); }
+.lb-nav button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .feed, .feed-card { transition: none; }
+  .feed-card:hover { transform: none; }
+  .lb-inner { animation: none; }
 }
