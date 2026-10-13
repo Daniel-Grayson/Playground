@@ -28,8 +28,13 @@ import FlowField from '@/components/effects/FlowField';
 ```
 
 Each one fills its parent, so the parent needs a height. Every prop is listed
-in `lib/controls.js` with its range, and `/vault/<slug>` gives you live sliders
-for all of them — tune it there, then hardcode the numbers you landed on.
+in `lib/controls.js` with its default and sensible range — treat that file as
+the reference when picking values.
+
+Colours are not props. Each effect reads `--text`, `--bg` and friends from CSS
+custom properties on its own element, so you re-skin one by setting those
+variables on its container — see `lib/palette.js`, which derives the whole
+token set from a background and an ink.
 
 ## The engine
 
@@ -60,16 +65,24 @@ shader against a fullscreen quad and sets uniforms from a plain object.
 ## Layout
 
 ```
-app/                  gallery (/) and per-effect pages (/vault/[slug])
+app/page.jsx          the single page — the whole site
 components/effects/   the seventeen effects, one file each
 lib/useCanvas.js      the rAF/DPR/visibility/pointer engine
 lib/gl.js             minimal WebGL2 helper
 lib/math.js           easing, damping, seeded RNG, value noise
 lib/text.js           render type to a bitmap and sample it
 lib/scene.js          the procedural source the shader effects process
-lib/registry.js       effect metadata (titles, tags, how-it-works)
-lib/controls.js       live parameter ranges per effect
+lib/registry.js       effect metadata, card aspect ratio and palette
+lib/palette.js        derives a card's CSS variables from bg + ink
+lib/controls.js       documented parameter ranges per effect
 ```
+
+## Layout
+
+One centred 560px column with 24px gutters. Cards are 12px radius with a
+hairline border, 32px apart, each with its own aspect ratio so the column has
+rhythm instead of reading as a uniform stack. Everything is on that one page —
+there is nothing to click through to.
 
 ## Notes
 

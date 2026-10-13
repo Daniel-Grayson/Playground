@@ -1,5 +1,5 @@
 :root {
-  --bg: #ffffff;
+  --bg: #fcfcfc;
   --surface: #ffffff;
   --surface-2: #f4f4f2;
   --border: #e5e4e0;
@@ -68,83 +68,60 @@ a { color: inherit; }
 }
 
 /* --- gallery -----------------------------------------------------------
-   One centred column of large cards, rather than a dense grid: each effect
-   gets the room to actually be looked at, and only one or two canvases are
-   on screen at a time, so fewer of them run at once.                      */
+   Metrics taken from the reference: a 560px column with 24px gutters, cards
+   at 12px radius with a hairline border, 32px apart, each with its own
+   aspect ratio so the column has rhythm rather than a uniform stack.      */
+
+.shell {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .shell { padding: 0 16px; }
+}
 
 .feed {
-  max-width: 1040px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 72px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 32px;
 }
 
-.feed-item {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.feed-stage {
+.feed-card {
   position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  background: var(--surface-2);
-  aspect-ratio: 16 / 10;
   width: 100%;
-  transition: transform 0.25s ease;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--card-line, #f0f0f0);
+  background: var(--card-bg, #f7f7f7);
 }
 
-.feed-item:hover .feed-stage {
-  transform: translateY(-3px);
+/* Portrait phones: very wide cards get too short to read, so floor them. */
+@media (max-width: 480px) {
+  .feed-card[data-wide='true'] { aspect-ratio: 3 / 2 !important; }
 }
 
-.feed-caption {
+.feed-label {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 16px;
-  margin-top: 14px;
-  padding: 0 4px;
+  gap: 12px;
+  margin-top: 10px;
 }
 
-.feed-title {
-  font-size: 15px;
-  font-weight: 560;
-  letter-spacing: -0.01em;
+.feed-name {
+  font-size: 14px;
+  color: var(--text);
 }
 
-.feed-blurb {
-  margin: 3px 0 0;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--text-2);
-  max-width: 54ch;
-}
-
-.feed-index {
+.feed-tag {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-3);
   white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-
-.feed-item:focus-visible .feed-stage {
-  outline: 2px solid var(--text);
-  outline-offset: 3px;
-}
-
-@media (max-width: 720px) {
-  .feed { gap: 48px; }
-  .feed-stage { aspect-ratio: 4 / 3; border-radius: 18px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .feed-stage { transition: none; }
-  .feed-item:hover .feed-stage { transform: none; }
 }
 
 /* --- controls --------------------------------------------------------- */

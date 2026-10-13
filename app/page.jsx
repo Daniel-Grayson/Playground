@@ -1,53 +1,56 @@
-import Link from 'next/link';
-import { EFFECTS, CATEGORIES } from '@/lib/registry';
+import { EFFECTS } from '@/lib/registry';
+import { cardVars } from '@/lib/palette';
 import EffectLoader from '@/components/EffectLoader';
 
+// Everything lives on this one screen — there is nothing to click through to.
 export default function Home() {
   return (
-    <main className="wrap" style={{ paddingTop: 64, paddingBottom: 120 }}>
+    <main className="shell" style={{ paddingTop: 96, paddingBottom: 96 }}>
       <header
         style={{
-          maxWidth: 1040,
-          margin: '0 auto 56px',
           display: 'flex',
-          alignItems: 'baseline',
+          alignItems: 'center',
           justifyContent: 'space-between',
-          gap: 24,
+          gap: 16,
+          marginBottom: 32,
         }}
       >
-        <h1 style={{ fontSize: 20, fontWeight: 600, letterSpacing: '-0.02em', margin: 0 }}>
-          Vault
-        </h1>
-        <span className="mono">{EFFECTS.length} studies</span>
+        <h1 style={{ fontSize: 15, fontWeight: 400, margin: 0, color: 'var(--text)' }}>Vault</h1>
+        <span className="mono">{EFFECTS.length}</span>
       </header>
 
       <div className="feed">
-        {EFFECTS.map((e, i) => (
-          <Link key={e.slug} href={`/vault/${e.slug}`} className="feed-item">
-            <div className="feed-stage">
-              <EffectLoader slug={e.slug} />
-            </div>
-            <div className="feed-caption">
-              <div>
-                <div className="feed-title">{e.title}</div>
-                <p className="feed-blurb">{e.blurb}</p>
+        {EFFECTS.map((e) => {
+          const vars = cardVars(e.card.bg, e.card.ink);
+          // Ratios wider than ~2.4:1 collapse on a narrow phone; the
+          // stylesheet floors those, flagged here.
+          const [w, h] = e.aspect.split('/').map(Number);
+          return (
+            <section key={e.slug}>
+              <div
+                className="feed-card"
+                data-wide={w / h > 2.4 ? 'true' : undefined}
+                style={{
+                  ...vars,
+                  aspectRatio: e.aspect.replace('/', ' / '),
+                  '--card-bg': e.card.bg,
+                  '--card-line': vars['--border'],
+                }}
+              >
+                <EffectLoader slug={e.slug} />
               </div>
-              <span className="feed-index">
-                {String(i + 1).padStart(2, '0')} · {CATEGORIES[e.category]}
-              </span>
-            </div>
-          </Link>
-        ))}
+              <div className="feed-label">
+                <span className="feed-name">{e.title}</span>
+                <span className="feed-tag">{e.tags[0]}</span>
+              </div>
+            </section>
+          );
+        })}
       </div>
 
       <footer
         className="mono"
-        style={{
-          maxWidth: 1040,
-          margin: '96px auto 0',
-          paddingTop: 28,
-          borderTop: '1px solid var(--border)',
-        }}
+        style={{ marginTop: 64, paddingTop: 24, borderTop: '1px solid var(--border)' }}
       >
         MIT — free to copy
       </footer>
