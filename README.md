@@ -1,9 +1,26 @@
 # Vault
 
-Interactive studies, built from scratch — typography, shaders, microinteractions
-and generative canvases. Seventeen of them, each a single React component with
-**no dependencies beyond React itself**, written to be lifted straight into a
+Four kinetic-type studies, each a self-contained React component with **no
+dependencies beyond React itself**, written to be lifted straight into a
 portfolio.
+
+| | |
+|---|---|
+| **Flood type** | A wordmark falls in, holds, then rushes the camera until it overruns the frame |
+| **Stamp type** | Four lines on flat bars hop in, park to be read, scatter — leaving printed residue |
+| **Ember type** | Doom's 1993 fire routine, seeded from the word's own pixels |
+| **Echo trail** | A word smeared into dozens of fading copies behind the pointer |
+
+Flood type and Stamp type are built to written specs and carry their own
+palettes and timelines in `lib/flood/params.js` and `lib/stamp/params.js` —
+every number the pieces run on is in those two files.
+
+## Type
+
+The type is **PP Mori** (Pangram Pangram), a licensed face, so the files are
+not committed. Drop `PPMori-Regular.woff2` and `PPMori-SemiBold.woff2` into
+`public/fonts` and everything picks them up; until then it falls back to the
+system grotesque. See `public/fonts/README.md`.
 
 ```bash
 npm install
@@ -66,7 +83,9 @@ shader against a fullscreen quad and sets uniforms from a plain object.
 
 ```
 app/page.jsx          the single page — the whole site
-components/effects/   the seventeen effects, one file each
+components/effects/   the four effects, one file each
+lib/flood/            Flood type: params + engine
+lib/stamp/            Stamp type: params + engine
 lib/useCanvas.js      the rAF/DPR/visibility/pointer engine
 lib/gl.js             minimal WebGL2 helper
 lib/math.js           easing, damping, seeded RNG, value noise

@@ -1,3 +1,25 @@
+/* PP Mori is a licensed face from Pangram Pangram, so the files are not in
+   this repo. Drop the two woff2 files into public/fonts and the whole piece
+   picks them up; until then every stack falls back to the system grotesque.
+   Only the weights actually used are declared — asking for a weight the
+   family does not ship makes the browser synthesise a fake bold by smearing
+   stems, which at Flood type's 2.2x peak is very visible mush. */
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/fonts/PPMori-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/fonts/PPMori-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #fcfcfc;
   --surface: #ffffff;
@@ -10,7 +32,7 @@
   --accent: #1b1a16;
   --radius: 14px;
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif;
+  --sans: 'PP Mori', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   color-scheme: light dark;
 }
 
@@ -95,28 +117,11 @@ a { color: inherit; }
   padding: 0;
   overflow: hidden;
   border-radius: 12px;
-  border: 1px solid var(--card-line, #f0f0f0);
+  border: 0;
   background: var(--card-bg, #f7f7f7);
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-  transition: transform 0.22s ease;
 }
 
-.feed-card:hover { transform: translateY(-2px); }
-.feed-card:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 
-/* The column stays put behind the overlay — blurred and washed back, so you
-   keep your place instead of being taken somewhere else. */
-.feed {
-  transition: filter 0.3s ease, opacity 0.3s ease;
-}
-
-.feed[data-dimmed] {
-  filter: blur(7px) saturate(0.55);
-  opacity: 0.45;
-  pointer-events: none;
-}
 
 /* Portrait phones: very wide cards get too short to read, so floor them. */
 @media (max-width: 480px) {
@@ -124,25 +129,12 @@ a { color: inherit; }
 }
 
 .feed-label {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
   margin-top: 10px;
 }
 
 .feed-name {
   font-size: 14px;
   color: var(--text);
-}
-
-.feed-tag {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  white-space: nowrap;
 }
 
 /* --- controls --------------------------------------------------------- */
@@ -254,358 +246,4 @@ canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 
 @media (max-width: 860px) {
   .studio { grid-template-columns: minmax(0, 1fr); }
-}
-
-
-/* Pills for an effect's techniques. These are used by the lightbox; they
-   were lost when the gallery CSS was rewritten, which ran the words
-   together into one string. */
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px 8px;
-  white-space: nowrap;
-}
-
-/* --- lightbox ---------------------------------------------------------- */
-
-.lb {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: max(24px, env(safe-area-inset-top, 0px)) 16px 0;
-}
-
-.lb-scrim {
-  position: fixed;
-  inset: 0;
-  border: 0;
-  padding: 0;
-  cursor: zoom-out;
-  background: color-mix(in srgb, var(--bg) 78%, transparent);
-}
-
-.lb-inner {
-  position: relative;
-  width: 100%;
-  max-width: 880px;
-  margin: auto;
-  padding-bottom: 96px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  animation: lb-rise 0.26s cubic-bezier(0.22, 0.8, 0.3, 1) both;
-}
-
-@keyframes lb-rise {
-  from { opacity: 0; transform: translateY(14px) scale(0.985); }
-  to   { opacity: 1; transform: none; }
-}
-
-.lb-stage {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  box-shadow: 0 24px 70px -28px rgba(0, 0, 0, 0.45);
-}
-
-.lb-text { max-width: 64ch; }
-
-.lb-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.lb-title {
-  margin: 0;
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text);
-}
-
-.lb-how {
-  margin: 10px 0 14px;
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--text-2);
-}
-
-.lb-nav {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
-  display: flex;
-  gap: 8px;
-  z-index: 2;
-}
-
-.lb-nav button {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-2);
-  font-size: 17px;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.3);
-}
-
-.lb-nav button:hover { background: var(--surface-2); color: var(--text); }
-.lb-nav button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-
-@media (prefers-reduced-motion: reduce) {
-  .feed, .feed-card { transition: none; }
-  .feed-card:hover { transform: none; }
-  .lb-inner { animation: none; }
-}
-
-/* --- product-UI components --------------------------------------------
-   These four are DOM rather than canvas: they are crisp tiles, real
-   shadows and real blur, and the compositor moves transforms far more
-   cheaply than we could repaint them.                                    */
-
-.orbit, .stack, .dock-wrap, .cascade {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  position: relative;
-  container-type: inline-size;
-  overflow: hidden;
-}
-
-/* Integration orbit */
-.orbit-ring {
-  position: relative;
-  width: min(62cqw, 300px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px dashed var(--border-strong);
-}
-
-.orbit-arm {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: start center;
-}
-
-.orbit-spoke {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    to bottom,
-    transparent calc(var(--p, 0) * 100% - 22%),
-    var(--text) calc(var(--p, 0) * 100%),
-    transparent calc(var(--p, 0) * 100% + 22%)
-  );
-}
-
-.orbit-tile {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: clamp(28px, 11cqw, 46px);
-  aspect-ratio: 1;
-  margin-top: calc(clamp(28px, 11cqw, 46px) / -2);
-  border-radius: 28%;
-  background: var(--surface-2);
-  border: 1px solid var(--border-strong);
-  color: var(--text);
-  font-size: clamp(12px, 4.4cqw, 18px);
-  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.5);
-}
-
-.orbit-hub {
-  position: absolute;
-  width: clamp(44px, 17cqw, 74px);
-  aspect-ratio: 1;
-  border-radius: 26%;
-  background: var(--text);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-}
-
-/* Glass stack */
-.stack-inner {
-  position: relative;
-  width: min(30cqw, 140px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-}
-
-.stack-plate {
-  position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--text) 16%, transparent);
-  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
-  backdrop-filter: blur(2px);
-  display: grid;
-  place-items: center;
-  transition: none;
-  will-change: transform;
-}
-
-.stack-emboss {
-  width: 38%;
-  aspect-ratio: 1;
-  border-radius: 24%;
-  border: 2px solid color-mix(in srgb, var(--text) 42%, transparent);
-  box-shadow: inset 0 2px 6px color-mix(in srgb, var(--text) 22%, transparent);
-}
-
-/* Dock */
-.dock {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--text) 10%, transparent);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(8px);
-}
-
-.dock-icon {
-  width: var(--icon);
-  height: var(--icon);
-  display: grid;
-  place-items: center;
-  border-radius: 24%;
-  font-size: calc(var(--icon) * 0.42);
-  color: var(--bg);
-  transform-origin: 50% 100%;
-  transition: transform 0.16s cubic-bezier(0.22, 0.8, 0.3, 1);
-  will-change: transform;
-  background: linear-gradient(160deg,
-    color-mix(in srgb, var(--text) 96%, white),
-    var(--accent, var(--text)));
-  box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.55),
-              inset 0 1px 0 rgba(255, 255, 255, 0.45);
-}
-
-.dock-shelf {
-  width: min(70cqw, 320px);
-  height: 1px;
-  margin-top: 14px;
-  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-}
-
-/* Cascade menu */
-.cascade { align-content: center; padding: 6cqw; }
-
-.cas-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  align-self: center;
-  padding: 7px 12px;
-  margin-bottom: 10px;
-  border-radius: 999px;
-  background: var(--surface-2);
-  border: 1px solid var(--border-strong);
-  color: var(--text);
-  font-size: clamp(10px, 3.2cqw, 13px);
-  white-space: nowrap;
-}
-
-.cas-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--accent, var(--text));
-}
-.cas-caret { color: var(--text-3); font-size: 9px; line-height: 1; }
-
-.cas-row { position: relative; display: flex; align-items: flex-start; }
-
-.cas-panel {
-  width: clamp(130px, 42cqw, 190px);
-  padding: 6px;
-  border-radius: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.55);
-  opacity: 0;
-  transform: translateY(-6px) scale(0.98);
-  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 0.8, 0.3, 1);
-}
-
-.cas-panel[data-open] { opacity: 1; transform: none; }
-
-.cas-sub {
-  position: absolute;
-  left: calc(100% - 10px);
-  top: var(--anchor, 0px);
-  transform: translateX(-8px) scale(0.98);
-}
-.cas-sub[data-open] { transform: none; }
-
-.cas-filter {
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  padding: 5px 8px 7px;
-}
-
-.cas-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  width: 100%;
-  padding: 6px 8px;
-  border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: var(--text-2);
-  font: inherit;
-  font-size: clamp(10px, 3.1cqw, 12.5px);
-  text-align: left;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: opacity 0.2s ease var(--d, 0ms), background 0.14s ease, color 0.14s ease;
-}
-
-.cas-item[data-on], .cas-item:hover {
-  background: color-mix(in srgb, var(--text) 12%, transparent);
-  color: var(--text);
-}
-
-.cas-ico { color: var(--accent, var(--text-3)); font-size: 9px; }
-.cas-more { margin-left: auto; color: var(--text-3); }
-
-@media (prefers-reduced-motion: reduce) {
-  .dock-icon, .cas-panel, .cas-item { transition: none; }
 }
