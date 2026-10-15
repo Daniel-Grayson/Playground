@@ -4,3 +4,6 @@ out
 .DS_Store
 *.log
 .env*.local
+
+# written by `next dev` on every start
+AGENTS.md
