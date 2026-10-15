@@ -9,6 +9,12 @@ function Placeholder() {
 }
 
 const MAP = {
+  'relief-contour': dynamic(() => import('./effects/ReliefContour'), { ssr: false, loading: Placeholder }),
+  'slat-turn': dynamic(() => import('./effects/SlatTurn'), { ssr: false, loading: Placeholder }),
+  'loom-damask': dynamic(() => import('./effects/LoomDamask'), { ssr: false, loading: Placeholder }),
+  'press-register': dynamic(() => import('./effects/PressRegister'), { ssr: false, loading: Placeholder }),
+  'tumble-blocks': dynamic(() => import('./effects/TumbleBlocks'), { ssr: false, loading: Placeholder }),
+  'marble-bath': dynamic(() => import('./effects/MarbleBath'), { ssr: false, loading: Placeholder }),
   'moire-type': dynamic(() => import('./effects/MoireType'), { ssr: false, loading: Placeholder }),
   'flood-type': dynamic(() => import('./effects/FloodType'), { ssr: false, loading: Placeholder }),
   'stamp-type': dynamic(() => import('./effects/StampType'), { ssr: false, loading: Placeholder }),
