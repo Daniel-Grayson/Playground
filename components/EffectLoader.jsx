@@ -9,6 +9,7 @@ function Placeholder() {
 }
 
 const MAP = {
+  'moire-type': dynamic(() => import('./effects/MoireType'), { ssr: false, loading: Placeholder }),
   'flood-type': dynamic(() => import('./effects/FloodType'), { ssr: false, loading: Placeholder }),
   'stamp-type': dynamic(() => import('./effects/StampType'), { ssr: false, loading: Placeholder }),
   'ember-type': dynamic(() => import('./effects/EmberType'), { ssr: false, loading: Placeholder }),
