@@ -10,7 +10,6 @@ function Placeholder() {
 
 const MAP = {
   'relief-contour': dynamic(() => import('./effects/ReliefContour'), { ssr: false, loading: Placeholder }),
-  'slat-turn': dynamic(() => import('./effects/SlatTurn'), { ssr: false, loading: Placeholder }),
   'loom-damask': dynamic(() => import('./effects/LoomDamask'), { ssr: false, loading: Placeholder }),
   'press-register': dynamic(() => import('./effects/PressRegister'), { ssr: false, loading: Placeholder }),
   'tumble-blocks': dynamic(() => import('./effects/TumbleBlocks'), { ssr: false, loading: Placeholder }),

@@ -20,13 +20,6 @@ export default function Home() {
       </header>
 
       <Feed effects={EFFECTS} />
-
-      <footer
-        className="mono"
-        style={{ marginTop: 64, paddingTop: 24, borderTop: '1px solid var(--border)' }}
-      >
-        MIT — free to copy
-      </footer>
     </main>
   );
 }
