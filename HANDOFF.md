@@ -77,16 +77,16 @@ Of these:
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
   horse mark and the labels Home and Works at their request. The mark is the
   user's own horse, pasted from Figma as SVG and kept at `lib/lamp/horse.svg`;
-  The mark is **not** that outline: it is an
-  articulated figure in `lib/lamp/figure.js`, drawn to the artwork's
-  proportions. A gallop needs a knee and a hock, and a flat silhouette has
-  neither \u2014 cutting one apart and swinging the pieces was tried and only
-  ever gives a hobby-horse scissor. The figure is lit by the field and then
-  rasterised to a 26-row buffer and scaled up with smoothing off, so it is
-  pixel art that can still move; a bitmap of a fixed pose cannot.
-  **Watch the angle sign**: positive is toward the tail and the knee folds by
-  ADDING to the upper segment, and getting it backwards gallops the horse in
-  reverse with its hooves over its own rump. **Attached image files do
+  The mark is that artwork for everything above
+  the legs, drawn verbatim, with jointed legs built underneath in
+  `lib/lamp/figure.js`. Two earlier versions failed in opposite directions:
+  swinging the artwork's frozen legs could only scissor (a gallop needs a
+  knee and hock), and a horse built entirely from stroked limbs galloped but
+  looked like a dog. Only the legs are built, tapered like real legs with a
+  hock on the hind pair, keyed from Muybridge's gallop plates. The figure is
+  lit, then rasterised to a 30-row buffer and scaled up with smoothing off,
+  because the user wants it pixelated. **Angle sign**: positive is toward
+  the tail; get it backwards and the horse gallops in reverse. **Attached image files do
   not reach the container — only pasted text does**, which is why the SVG
   route was needed at all. The composition is the
   screenshot's own: a grey page, a dark panel inset from the top left with a
