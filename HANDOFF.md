@@ -52,7 +52,7 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Eleven effects, in page order:** Lamp, Plate, Leader, Transit, Relief, Loom,
+**Eleven effects, in page order:** Lamp, Plate, Leader, Relief, Loom, Transit,
 Tumble, Marble, Moiré type, Ember type, Echo trail.
 
 **New cards go to the TOP of the feed.** A standing instruction from the
@@ -344,7 +344,7 @@ Each `params.js` opens with a full written-up mechanism. Short form:
 | **Tumble** | rhombille; `tone[(k + g) % 3]`, generation closed-form from travelling fronts | the front carries the next palette |
 | **Marble** | two closed-form point transforms, 30Hz tick timeline | the clearing drop is just another drop |
 | **Moiré type** | the word is only where two rulings disagree | at zero divergence the field is uniform |
-| **Leader** | global ramps + four constants per letter; 3D is one cosine | the count runs in order, stock flips each number |
+| **Leader** | global ramps + four constants per letter; 3D is one cosine | the lines run in order, stock changes each card |
 | **Transit** | text on bars walking a breakpoint track, stamping residue | incoming pass overlaps the outgoing by 12 frames |
 | **Ember type** | Doom's 1993 fire routine, seeded from the word's pixels | — |
 | **Echo trail** | ring buffer of stamped copies | — |
