@@ -52,8 +52,12 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Eleven effects, in page order:** Plate, Leader, Transit, Lamp, Relief, Loom,
+**Eleven effects, in page order:** Lamp, Plate, Leader, Transit, Relief, Loom,
 Tumble, Marble, Moiré type, Ember type, Echo trail.
+
+**New cards go to the TOP of the feed.** A standing instruction from the
+user, so the newest work is the first thing seen. Order in `lib/registry.js`
+is page order, so a new effect's entry goes first in `EFFECTS`.
 
 Of these:
 - **Leader** and **Transit** began as `flood-type` and `stamp-type`, built to
