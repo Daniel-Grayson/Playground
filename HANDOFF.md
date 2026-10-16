@@ -85,7 +85,11 @@ Of these:
   looked like a dog. Only the legs are built, with THREE segments each \u2014
   upper, cannon and pastern \u2014 keyed from a gallop loop the user supplied.
   The pastern is the one that matters: with only two segments there is no
-  fetlock, and the standing pose read as four posts. The figure is
+  fetlock, and the standing pose read as four posts. The tail is the
+  artwork's own, cut into three pieces hung as a chain with a wave running
+  down it. The cut in front of the chest follows the true breast (x 21):
+  everything ahead of it below y 33 is the old raised foreleg, and an
+  axis-aligned cut there leaves a box where the leg meets the body. The figure is
   lit, then rasterised to a 30-row buffer and scaled up with smoothing off,
   because the user wants it pixelated. **Angle sign**: positive is toward
   the tail; get it backwards and the horse gallops in reverse. **Attached image files do
