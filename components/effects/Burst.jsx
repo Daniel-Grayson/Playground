@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react';
 import { RayBurst as Engine } from '@/lib/burst/engine';
 
 /**
- * Burst — a ring of stepped rays round an empty centre. The centre follows
- * the pointer and every ray turns to aim at it; a pulse runs round the ring
- * that pointer movement speeds up.
+ * Burst — a ring of stepped rays round an empty centre, evenly spaced and
+ * moving in unison: they breathe in and out together while the ring turns.
+ * Pointer movement speeds both up.
  */
 export default function RayBurst() {
   const canvasRef = useRef(null);
@@ -70,7 +70,7 @@ export default function RayBurst() {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="Orange rays on a dark brown ground, each a thick bar stepping down to a hairline needle, all pointing in at an empty circle in the middle. The empty centre drifts toward the pointer and every ray turns to aim at it, and a pulse sweeps round the ring pushing each ray inward in turn, faster when the pointer moves."
+      aria-label="Orange rays on a dark brown ground, each a thick bar stepping down to a hairline needle, all pointing in at an empty circle in the middle. All the rays move together: they push in toward the centre and draw back out like an iris while the ring turns slowly, faster when the pointer moves."
     />
   );
 }

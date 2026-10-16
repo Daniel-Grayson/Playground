@@ -75,8 +75,9 @@ Of these:
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
 - **Burst** is the user's Figma ray burst (ray SVG kept at
-  `lib/burst/ray.svg`): centre follows the pointer, rays re-aim, a pulse runs
-  round the ring and pointer movement speeds it.
+  `lib/burst/ray.svg`): rays evenly spaced and moving in unison (user
+  rejected per-ray motion): breathe in/out together, ring turns slowly,
+  pointer movement speeds both.
 - **Like** is a like button from a user recording (press to like/unlike;
   the user's characters replaced by confetti at their request). All motion
   is per-frame tables in `lib/like/params.js` measured from the recording.
