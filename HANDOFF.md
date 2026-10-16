@@ -77,8 +77,9 @@ Of these:
 - **Post** was built from a screen recording of loose vintage stamps the user
   liked, re-subjected to cities. Eight engraved city stamps (`lib/post/`), each
   one ink on cream; scenes are tone maps cut into line engraving once per
-  resize. The reference drags stamps; with no clicking allowed, the stamp
-  under the pointer lifts on hover and goes to the top of the pile.
+  resize. Stamps are dragged anywhere in the frame (the user asked for
+  this explicitly, an exception to no-clicking) and nothing moves by itself:
+  no idle motion, no hover motion.
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
   horse mark and the labels Home and Works at their request. The mark is the
   user's own horse, pasted from Figma as SVG and kept at `lib/lamp/horse.svg`;

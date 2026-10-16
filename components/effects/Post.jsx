@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react';
 import { PostCities as Engine } from '@/lib/post/engine';
 
 /**
- * Post — a sheet of engraved city stamps. The one under the pointer lifts
- * off the sheet and comes to the top of the pile.
+ * Post — a sheet of engraved city stamps. Pick one up and put it anywhere;
+ * nothing moves unless it is being moved.
  */
 export default function PostCities() {
   const canvasRef = useRef(null);
@@ -45,13 +45,38 @@ export default function PostCities() {
     const ro = new ResizeObserver(() => engine?.resize());
     ro.observe(canvas);
 
-    const onMove = (e) => {
-      if (reduced || !engine) return;
+    const at = (e) => {
       const r = canvas.getBoundingClientRect();
-      engine.setPointer(e.clientX - r.left, e.clientY - r.top);
+      return [e.clientX - r.left, e.clientY - r.top];
+    };
+    const onMove = (e) => {
+      if (!engine) return;
+      const [x, y] = at(e);
+      engine.setPointer(x, y);
+      canvas.style.cursor = engine.cursor(x, y);
+      if (reduced) engine.renderStill();
+    };
+    const onDown = (e) => {
+      if (!engine) return;
+      const [x, y] = at(e);
+      if (!engine.press(x, y)) return;
+      e.preventDefault();
+      canvas.setPointerCapture?.(e.pointerId);
+      canvas.style.cursor = 'grabbing';
+      if (reduced) engine.renderStill();
+    };
+    const onUp = (e) => {
+      if (!engine) return;
+      engine.release();
+      const [x, y] = at(e);
+      canvas.style.cursor = engine.cursor(x, y);
+      if (reduced) engine.renderStill();
     };
     const onLeave = () => engine?.clearPointer();
     canvas.addEventListener('pointermove', onMove, { passive: true });
+    canvas.addEventListener('pointerdown', onDown);
+    canvas.addEventListener('pointerup', onUp, { passive: true });
+    canvas.addEventListener('pointercancel', onUp, { passive: true });
     canvas.addEventListener('pointerleave', onLeave, { passive: true });
 
     return () => {
@@ -60,6 +85,9 @@ export default function PostCities() {
       ro.disconnect();
       document.removeEventListener('visibilitychange', onVis);
       canvas.removeEventListener('pointermove', onMove);
+      canvas.removeEventListener('pointerdown', onDown);
+      canvas.removeEventListener('pointerup', onUp);
+      canvas.removeEventListener('pointercancel', onUp);
       canvas.removeEventListener('pointerleave', onLeave);
       engine?.destroy();
     };
@@ -68,8 +96,9 @@ export default function PostCities() {
   return (
     <canvas
       ref={canvasRef}
+      style={{ touchAction: 'pan-y' }}
       role="img"
-      aria-label="An album page of loose postage stamps, each engraved in one colour with a city: New York, Paris, Rio, Tokyo, Istanbul, Sydney, London and Cairo. The stamp under the pointer lifts off the page, squares up and casts a longer shadow, and comes to the top of the pile."
+      aria-label="An album page of loose postage stamps, each engraved in one colour with a city: New York, Paris, Rio, Tokyo, Istanbul, Sydney, London and Cairo. Press on a stamp to pick it up and move it anywhere on the page; it lifts, squares up and casts a longer shadow, and stays on top of the pile where it is put down."
     />
   );
 }
