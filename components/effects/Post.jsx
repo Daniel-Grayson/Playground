@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { PostCities as Engine } from '@/lib/post/engine';
 
 /**
- * Post — a sheet of engraved city stamps. Pick one up and put it anywhere;
+ * Post — a sheet of city stamps, real photographs graded into one ink. Pick one up and put it anywhere;
  * nothing moves unless it is being moved.
  */
 export default function PostCities() {
@@ -98,7 +98,7 @@ export default function PostCities() {
       ref={canvasRef}
       style={{ touchAction: 'pan-y' }}
       role="img"
-      aria-label="An album page of loose postage stamps, each engraved in one colour with a city: New York, Paris, Rio, Tokyo, Istanbul, Sydney, London and Cairo. Press on a stamp to pick it up and move it anywhere on the page; it lifts, squares up and casts a longer shadow, and stays on top of the pile where it is put down."
+      aria-label="An album page of loose postage stamps, each a photograph of a city printed in one colour: New York, Paris, Rio, Tokyo, Istanbul, Sydney, London and Cairo. Press on a stamp to pick it up and move it anywhere on the page; it lifts, squares up and casts a longer shadow, and stays on top of the pile where it is put down."
     />
   );
 }

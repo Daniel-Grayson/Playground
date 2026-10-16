@@ -75,9 +75,9 @@ Of these:
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
 - **Post** was built from a screen recording of loose vintage stamps the user
-  liked, re-subjected to cities. Eight engraved city stamps (`lib/post/`), each
-  one ink on cream; scenes are tone maps cut into line engraving once per
-  resize. Stamps are dragged anywhere in the frame (the user asked for
+  liked, re-subjected to cities. Eight city stamps (`lib/post/`), each a real
+  CC0/public-domain photo (`public/post/`, credits in CREDITS.md) colour
+  graded at runtime into one ink on cream. Stamps are dragged anywhere in the frame (the user asked for
   this explicitly, an exception to no-clicking) and nothing moves by itself:
   no idle motion, no hover motion.
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
