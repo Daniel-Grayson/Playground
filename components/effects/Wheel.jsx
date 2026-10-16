@@ -69,7 +69,7 @@ export default function WordWheel() {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="A dial of words on black, each word set along its own spoke of a large ring whose centre is off the left edge: Fibroscan, Haematocrit, Gamma-GT, Apolipoprotein B and others, with a few set larger in orange. The ring turns slowly, and moving the pointer up or down over it flicks it round."
+      aria-label="A dial of words on black, each word set along its own spoke of a large ring whose centre is off the left edge: Fibroscan, Haematocrit, Gamma-GT, Apolipoprotein B and others, all small and white. The ring turns steadily; the word under the pointer grows and turns orange, and moving the pointer up or down spins the ring faster."
     />
   );
 }
