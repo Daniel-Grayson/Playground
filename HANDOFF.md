@@ -52,7 +52,7 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Fourteen effects, in page order:** Like, Flip, Post, Lamp, Plate, Leader, Relief, Loom, Transit,
+**Fifteen effects, in page order:** Burst, Like, Flip, Post, Lamp, Plate, Leader, Relief, Loom, Transit,
 Tumble, Marble, Moiré type, Ember type, Echo trail.
 
 **New cards go to the TOP of the feed.** A standing instruction from the
@@ -74,6 +74,9 @@ Of these:
   a parcel through customs has to collect a stamp at every stop.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
+- **Burst** is the user's Figma ray burst (ray SVG kept at
+  `lib/burst/ray.svg`): centre follows the pointer, rays re-aim, a pulse runs
+  round the ring and pointer movement speeds it.
 - **Like** is a like button from a user recording (press to like/unlike;
   the user's characters replaced by confetti at their request). All motion
   is per-frame tables in `lib/like/params.js` measured from the recording.
