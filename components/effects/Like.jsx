@@ -45,14 +45,21 @@ export default function LikeConfetti() {
     const ro = new ResizeObserver(() => engine?.resize());
     ro.observe(canvas);
 
-    const onMove = (e) => {
-      if (reduced || !engine) return;
+    const at = (e) => {
       const r = canvas.getBoundingClientRect();
-      engine.setPointer(e.clientX - r.left, e.clientY - r.top);
+      return [e.clientX - r.left, e.clientY - r.top];
     };
-    const onLeave = () => engine?.clearPointer();
-    const onDown = () => {
+    // Only the heart is the button: the hand shows over it and nowhere else.
+    const onMove = (e) => {
       if (!engine) return;
+      const [x, y] = at(e);
+      canvas.style.cursor = engine.hits(x, y) ? 'pointer' : 'default';
+    };
+    const onLeave = () => { canvas.style.cursor = 'default'; };
+    const onDown = (e) => {
+      if (!engine) return;
+      const [x, y] = at(e);
+      if (!engine.hits(x, y)) return;
       engine.press(reduced);
       if (reduced) engine.renderStill();
     };
@@ -75,9 +82,8 @@ export default function LikeConfetti() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ cursor: 'pointer' }}
       role="img"
-      aria-label="A grey outline heart on a light grey ground. Pressing the card likes it: the heart is pulled in, a burst of pink, blue, purple and orange confetti breathes out and draws back in, and a filled pink heart lands in its place. After two seconds it returns to the outline."
+      aria-label="A grey outline heart on a light grey ground. Pressing the heart likes it: the heart is pulled in, a burst of pink, blue, purple and orange confetti breathes out and draws back in, and a filled pink heart lands in its place. After two seconds it returns to the outline."
     />
   );
 }
