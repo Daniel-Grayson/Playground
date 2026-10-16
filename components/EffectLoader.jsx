@@ -9,6 +9,7 @@ function Placeholder() {
 }
 
 const MAP = {
+  'sticker-flip': dynamic(() => import('./effects/Flip'), { ssr: false, loading: Placeholder }),
   'post-cities': dynamic(() => import('./effects/Post'), { ssr: false, loading: Placeholder }),
   'plate-develop': dynamic(() => import('./effects/PlateDevelop'), { ssr: false, loading: Placeholder }),
   'lamp-nav': dynamic(() => import('./effects/Lamp'), { ssr: false, loading: Placeholder }),

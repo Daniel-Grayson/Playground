@@ -52,7 +52,7 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Twelve effects, in page order:** Post, Lamp, Plate, Leader, Relief, Loom, Transit,
+**Thirteen effects, in page order:** Flip, Post, Lamp, Plate, Leader, Relief, Loom, Transit,
 Tumble, Marble, Moiré type, Ember type, Echo trail.
 
 **New cards go to the TOP of the feed.** A standing instruction from the
@@ -74,6 +74,10 @@ Of these:
   a parcel through customs has to collect a stamp at every stop.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
+- **Flip** is a sticker flipbook from a user recording: hard cuts every
+  ~0.42s on `#110000`, pointer x sets the beat. Images go in
+  `public/stickers/` and are listed in `lib/flip/params.js` STICKERS;
+  missing files show numbered placeholder stickers.
 - **Post** was built from a screen recording of loose vintage stamps the user
   liked, re-subjected to cities. Eight city stamps (`lib/post/`), each a real
   CC0/public-domain photo (`public/post/`, credits in CREDITS.md) colour
