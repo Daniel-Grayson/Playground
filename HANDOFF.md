@@ -77,18 +77,16 @@ Of these:
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
   horse mark and the labels Home and Works at their request. The mark is the
   user's own horse, pasted from Figma as SVG and kept at `lib/lamp/horse.svg`;
-  `params.js` carries its path verbatim. The engine articulates and lights
-  the vector, then rasterises the RESULT to a 20-row buffer and scales it up
-  with smoothing off, so the mark reads as pixel art while the geometry
-  underneath is real. The user asked for the pixel look back after seeing a
-  smooth version; rasterising the animation rather than the artwork is what
-  gives them both, since a bitmap of a fixed pose has no leg in it to swing. They sent
-  four horses, but the four are different illustrations rather than one horse
-  in four positions (silhouette overlap only ~0.5, where a real stride cycle
-  is 0.8+), so cutting between them read as four horses flickering. Instead each leg is clipped out of the single path and
-  swung about its own joint, with the body drawn back over the cuts \u2014 the
-  clips must be narrow and must start below the row where a pair stops
-  overlapping, or the rotation swings a visible notch out of the shoulder. **Attached image files do
+  The mark is **not** that outline: it is an
+  articulated figure in `lib/lamp/figure.js`, drawn to the artwork's
+  proportions. A gallop needs a knee and a hock, and a flat silhouette has
+  neither \u2014 cutting one apart and swinging the pieces was tried and only
+  ever gives a hobby-horse scissor. The figure is lit by the field and then
+  rasterised to a 26-row buffer and scaled up with smoothing off, so it is
+  pixel art that can still move; a bitmap of a fixed pose cannot.
+  **Watch the angle sign**: positive is toward the tail and the knee folds by
+  ADDING to the upper segment, and getting it backwards gallops the horse in
+  reverse with its hooves over its own rump. **Attached image files do
   not reach the container — only pasted text does**, which is why the SVG
   route was needed at all. The composition is the
   screenshot's own: a grey page, a dark panel inset from the top left with a
