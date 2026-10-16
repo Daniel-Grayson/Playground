@@ -52,7 +52,7 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Sixteen effects, in page order:** Chain, Burst, Like, Flip, Post, Lamp, Plate, Leader, Relief, Loom, Transit,
+**Seventeen effects, in page order:** Wheel, Chain, Burst, Like, Flip, Post, Lamp, Plate, Leader, Relief, Loom, Transit,
 Tumble, Marble, Moiré type, Ember type, Echo trail.
 
 **New cards go to the TOP of the feed.** A standing instruction from the
@@ -74,6 +74,8 @@ Of these:
   a parcel through customs has to collect a stamp at every stop.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
+- **Wheel** is a ring of words from a user frame (a health-lab brand's;
+  its logo was deliberately left out). Pointer vertical speed flicks it.
 - **Chain** is a zigzag of photos from a user Figma screenshot, as a chain
   of rigid links with one wave along it; hover raises the wind. Uses Post and
   Plate photos as stand-ins until the user supplies theirs (`LINKS` in

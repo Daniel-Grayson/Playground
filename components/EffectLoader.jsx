@@ -9,6 +9,7 @@ function Placeholder() {
 }
 
 const MAP = {
+  'word-wheel': dynamic(() => import('./effects/Wheel'), { ssr: false, loading: Placeholder }),
   'photo-chain': dynamic(() => import('./effects/Chain'), { ssr: false, loading: Placeholder }),
   'ray-burst': dynamic(() => import('./effects/Burst'), { ssr: false, loading: Placeholder }),
   'like-confetti': dynamic(() => import('./effects/Like'), { ssr: false, loading: Placeholder }),
