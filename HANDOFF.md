@@ -52,8 +52,8 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Ten effects, in page order:** Plate, Relief, Loom, Tumble, Marble, Moiré
-type, Leader, Transit, Ember type, Echo trail.
+**Ten effects, in page order:** Plate, Leader, Transit, Relief, Loom, Tumble,
+Marble, Moiré type, Ember type, Echo trail.
 
 Of these:
 - **Leader** and **Transit** began as `flood-type` and `stamp-type`, built to
