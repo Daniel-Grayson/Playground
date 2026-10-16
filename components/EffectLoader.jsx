@@ -11,7 +11,6 @@ function Placeholder() {
 const MAP = {
   'relief-contour': dynamic(() => import('./effects/ReliefContour'), { ssr: false, loading: Placeholder }),
   'loom-damask': dynamic(() => import('./effects/LoomDamask'), { ssr: false, loading: Placeholder }),
-  'press-register': dynamic(() => import('./effects/PressRegister'), { ssr: false, loading: Placeholder }),
   'tumble-blocks': dynamic(() => import('./effects/TumbleBlocks'), { ssr: false, loading: Placeholder }),
   'marble-bath': dynamic(() => import('./effects/MarbleBath'), { ssr: false, loading: Placeholder }),
   'moire-type': dynamic(() => import('./effects/MoireType'), { ssr: false, loading: Placeholder }),

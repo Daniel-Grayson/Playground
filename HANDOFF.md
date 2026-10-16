@@ -52,20 +52,22 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Ten effects, in page order:** Relief, Loom, Press, Tumble, Marble, Moiré
-type, Flood type, Stamp type, Ember type, Echo trail.
+**Nine effects, in page order:** Relief, Loom, Tumble, Marble, Moiré type,
+Flood type, Stamp type, Ember type, Echo trail.
 
 Of these:
 - **Flood type** and **Stamp type** were built to written specs the user
   supplied, verbatim from Arlan's style. Their params files are the spec.
 - **Moiré type** was the first original, made after studying Arlan's work.
-- **Relief, Loom, Press, Tumble, Marble** are originals from a later round.
+- **Relief, Loom, Tumble, Marble** are originals from a later round.
 - **Ember type** and **Echo trail** predate all of that and are the only two
   still written against the `useCanvas` React hook rather than as engine
   classes.
 
 **Slat** (a lenticular prism piece) was built and then removed on request.
-It is in history at `6520f87` if it is ever wanted back.
+It is in history at `6520f87` if it is ever wanted back. **Press** (four ink
+plates drifting out of register) was removed the same way; it is intact at
+`063d0d0`.
 
 ### Things that are NOT done
 
@@ -129,7 +131,7 @@ lib/<name>/engine.js  the engine class
 
 ### The engine-class pattern (use this for anything new)
 
-Eight of the ten effects are a plain class with this surface:
+Seven of the nine effects are a plain class with this surface:
 
 ```js
 export class Thing {
@@ -285,7 +287,7 @@ and `cardVars` straight from the repo, maps slug to engine class, and
 reimplements the two React drivers in plain JS (~110 lines). Ember and Echo
 need a vanilla port of `useCanvas`.
 
-## 8. The ten effects
+## 8. The nine effects
 
 Each `params.js` opens with a full written-up mechanism. Short form:
 
@@ -293,7 +295,6 @@ Each `params.js` opens with a full written-up mechanism. Short form:
 |---|---|---|
 | **Relief** | field frozen, only the lit elevation moves; the word is the contour at one height | sweep runs past both ends, the wrap is a dead frame |
 | **Loom** | five-end satin; the motif is float length 4 vs 1 | both sides reach 3, the motif is absent |
-| **Press** | four ink plates by multiply; four offsets and four angles | artwork cut in at peak misregistration |
 | **Tumble** | rhombille; `tone[(k + g) % 3]`, generation closed-form from travelling fronts | the front carries the next palette |
 | **Marble** | two closed-form point transforms, 30Hz tick timeline | the clearing drop is just another drop |
 | **Moiré type** | the word is only where two rulings disagree | at zero divergence the field is uniform |
