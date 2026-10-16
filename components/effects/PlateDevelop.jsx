@@ -70,7 +70,7 @@ export default function PlateDevelop() {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="An 1867 photograph of a horse-drawn darkroom wagon crossing pale sand dunes, shown as a cool silver negative. Wherever the pointer moves, warmth develops the plate: the warm sepia print rises through a soft grey haze and fades back to negative as it cools. With no pointer, a slow patch of warmth drifts across the plate by itself."
+      aria-label="An 1860s landscape photograph, shown as a cool silver negative. Wherever the pointer moves, warmth develops the plate: the warm sepia print rises through a soft grey haze and fades back to negative as it cools. Every few seconds a ring of warmth spreads across the whole plate from one point, and the wave develops a different 1860s photograph as it passes, leaving its negative behind."
     />
   );
 }

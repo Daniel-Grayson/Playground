@@ -62,10 +62,11 @@ Of these:
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
 - **Plate** recreates the Red Dead Redemption 2 loading screen (a photograph
   developing from its own negative), studied from a screen recording the user
-  supplied, and made cursor-driven with an idle drift at the user's request.
-  Its photograph is a public-domain 1867 Timothy O'Sullivan plate, levelled
-  and cropped into `public/plate/carson-desert.jpg`; it is the only effect
-  that loads an asset.
+  supplied, and made cursor-driven at the user's request. Every 5s a ring of
+  heat carries the next photograph across (the user asked for the change and
+  for the earlier idle drift to be removed). Its photographs are public-domain
+  1860s survey plates, levelled and cropped to 3:2 into `public/plate/`; it is
+  the only effect that loads assets. Credits are in `lib/plate/params.js`.
 - **Ember type** and **Echo trail** predate all of that and are the only two
   still written against the `useCanvas` React hook rather than as engine
   classes.
@@ -302,7 +303,7 @@ Each `params.js` opens with a full written-up mechanism. Short form:
 
 | | mechanism | transition |
 |---|---|---|
-| **Plate** | one photo, positive over its own negative with development as alpha; equal tonal span makes d = 0.5 uniform grey | the grey haze at the edge is the image being absent |
+| **Plate** | one photo, positive over its own negative with development as alpha; equal tonal span makes d = 0.5 uniform grey | a heat ring; each cell swaps plate as it passes d = 0.5, where it shows no image |
 | **Relief** | field frozen, only the lit elevation moves; the word is the contour at one height | sweep runs past both ends, the wrap is a dead frame |
 | **Loom** | five-end satin; the motif is float length 4 vs 1 | both sides reach 3, the motif is absent |
 | **Tumble** | rhombille; `tone[(k + g) % 3]`, generation closed-form from travelling fronts | the front carries the next palette |
