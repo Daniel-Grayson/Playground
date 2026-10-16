@@ -71,7 +71,15 @@ Of these:
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
-  horse mark and the labels Home and Works at their request. It is a strip
+  horse mark and the labels Home and Works at their request. The mark is the
+  user's own horse, pasted from Figma as SVG and kept at `lib/lamp/horse.svg`;
+  the bitmap in `params.js` is that file rasterised to a 28x20 grid. They sent
+  four horses, but the four are different illustrations rather than one horse
+  in four positions (silhouette overlap only ~0.5, where a real stride cycle
+  is 0.8+), so cutting between them read as four horses flickering. The prance
+  rocks the one pose about its hind hooves instead. **Attached image files do
+  not reach the container — only pasted text does**, which is why the SVG
+  route was needed at all. It is a strip
   rather than a tall card on purpose: it is a bar, and a tall frame left it
   stranded in one corner. The horse prances on hover, also at their request.
 - **Plate** recreates the Red Dead Redemption 2 loading screen (a photograph
