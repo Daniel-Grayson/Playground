@@ -51,8 +51,25 @@ export default function WordWheel() {
       engine.setPointer(e.clientX - r.left, e.clientY - r.top);
     };
     const onLeave = () => engine?.clearPointer();
+    // Spinning is only ever done on purpose: press, turn, let go.
+    const onDown = (e) => {
+      if (reduced || !engine) return;
+      const r = canvas.getBoundingClientRect();
+      engine.press(e.clientX - r.left, e.clientY - r.top);
+      canvas.setPointerCapture?.(e.pointerId);
+      canvas.style.cursor = 'grabbing';
+      e.preventDefault();
+    };
+    const onUp = () => {
+      engine?.release();
+      canvas.style.cursor = 'grab';
+    };
+    canvas.style.cursor = 'grab';
     canvas.addEventListener('pointermove', onMove, { passive: true });
     canvas.addEventListener('pointerleave', onLeave, { passive: true });
+    canvas.addEventListener('pointerdown', onDown);
+    canvas.addEventListener('pointerup', onUp, { passive: true });
+    canvas.addEventListener('pointercancel', onUp, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
@@ -61,6 +78,9 @@ export default function WordWheel() {
       document.removeEventListener('visibilitychange', onVis);
       canvas.removeEventListener('pointermove', onMove);
       canvas.removeEventListener('pointerleave', onLeave);
+      canvas.removeEventListener('pointerdown', onDown);
+      canvas.removeEventListener('pointerup', onUp);
+      canvas.removeEventListener('pointercancel', onUp);
       engine?.destroy();
     };
   }, []);
@@ -68,8 +88,9 @@ export default function WordWheel() {
   return (
     <canvas
       ref={canvasRef}
+      style={{ touchAction: 'pan-y' }}
       role="img"
-      aria-label="A dial of words on black, each word set along its own spoke of a large ring whose centre is off the left edge: Fibroscan, Haematocrit, Gamma-GT, Apolipoprotein B and others, all small and white. The ring turns steadily; the word under the pointer grows and turns orange, and moving the pointer up or down spins the ring faster."
+      aria-label="A dial of words on black, each word set along its own spoke of a large ring whose centre is off the left edge: Fibroscan, Haematocrit, Gamma-GT, Apolipoprotein B and others, all small and white. The ring turns steadily; the word under the pointer grows and turns orange, and pressing and dragging round the ring spins it, flinging it faster."
     />
   );
 }
