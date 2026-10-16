@@ -6,7 +6,7 @@ import { LampNav as Engine } from '@/lib/lamp/engine';
 /**
  * Lamp — a navigation bar lit by a single moving light. Every mark samples
  * one illumination field at its own position, so words light letter by
- * letter. The horse prances while the light is over it.
+ * letter. The horse runs on the spot while the light is over it.
  */
 export default function LampNav() {
   const canvasRef = useRef(null);
@@ -70,7 +70,7 @@ export default function LampNav() {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="A dark navigation bar with a blocky pixel horse at the top left and the words Home and Works beside it. A single light travels across the panel, and whatever it is near turns from grey to bright — a word lights letter by letter as the light crosses it, and the horse lights pixel by pixel. Moving the pointer over the card takes the light over; resting it on the horse sets the horse prancing on the spot until it finishes its stride."
+      aria-label="A dark navigation bar with a blocky pixel horse at the top left and the words Home and Works beside it. A single light travels across the panel, and whatever it is near turns from grey to bright — a word lights letter by letter as the light crosses it, and the horse lights pixel by pixel. Moving the pointer over the card takes the light over; resting it on the horse sets the horse galloping on the spot until it finishes its stride."
     />
   );
 }

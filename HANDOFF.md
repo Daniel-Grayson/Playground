@@ -85,8 +85,10 @@ Of these:
   the user's actual artwork. They sent
   four horses, but the four are different illustrations rather than one horse
   in four positions (silhouette overlap only ~0.5, where a real stride cycle
-  is 0.8+), so cutting between them read as four horses flickering. The prance
-  rocks the one pose about its hind hooves instead. **Attached image files do
+  is 0.8+), so cutting between them read as four horses flickering. Instead each leg is clipped out of the single path and
+  swung about its own joint, with the body drawn back over the cuts \u2014 the
+  clips must be narrow and must start below the row where a pair stops
+  overlapping, or the rotation swings a visible notch out of the shoulder. **Attached image files do
   not reach the container — only pasted text does**, which is why the SVG
   route was needed at all. The composition is the
   screenshot's own: a grey page, a dark panel inset from the top left with a
