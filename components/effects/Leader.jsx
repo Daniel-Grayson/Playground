@@ -1,17 +1,17 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { FloodType as Engine } from '@/lib/flood/engine';
+import { Leader as Engine } from '@/lib/leader/engine';
 
 /**
- * Flood type — a two-line wordmark falls in, holds, rushes the camera until
- * it overruns the frame, then tumbles out so the next word can arrive.
+ * Leader — an academy countdown. Each numeral falls in, holds, rushes the
+ * lens until it overruns the frame, then tumbles out for the next one.
  *
  * Runs its own loop rather than the shared useCanvas engine: it steps a tick
  * counter against a fixed 30fps timeline rather than integrating dt, and it
  * stretches its own hold while the pointer rests on it.
  */
-export default function FloodType() {
+export default function Leader() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function FloodType() {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="A two-line wordmark falls in from above, holds still, then rushes toward you until it overruns the frame with every letter turned to its own angle, before tumbling out of the bottom so the next word can arrive."
+      aria-label="A film leader counting a reel in. A head card reading Picture Start falls in from above, holds still, then rushes toward you until it overruns the frame and tumbles away; the numerals eight down to two follow it in turn, each on film stock that flips between black on bone and bone on black. Resting the pointer on the card holds the current number longer."
     />
   );
 }

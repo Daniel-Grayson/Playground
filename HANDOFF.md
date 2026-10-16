@@ -53,11 +53,21 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 ```
 
 **Ten effects, in page order:** Plate, Relief, Loom, Tumble, Marble, Moiré
-type, Flood type, Stamp type, Ember type, Echo trail.
+type, Leader, Transit, Ember type, Echo trail.
 
 Of these:
-- **Flood type** and **Stamp type** were built to written specs the user
-  supplied, verbatim from Arlan's style. Their params files are the spec.
+- **Leader** and **Transit** began as `flood-type` and `stamp-type`, built to
+  written specs taken verbatim from Arlan's style, and were later re-subjected
+  because they read as rip-offs. **The motion was deliberately kept**: Leader
+  still runs the measured zoom/turn/enter/fall tables, Transit still stamps a
+  silhouette with a 16-frame life. What changed is every layer that carried
+  his authorship — the names, the subject, the palettes, the type treatment —
+  and, in Transit's case, the track data, which had been traced from his piece
+  coordinate by coordinate and is now written for this one. The guiding idea
+  was that a mechanism is a technique (Ember is Doom's fire routine, Marble is
+  suminagashi) but an artefact is not, so each piece was given a subject that
+  genuinely demands the motion: a leader numeral has to overrun the frame, and
+  a parcel through customs has to collect a stamp at every stop.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
 - **Plate** recreates the Red Dead Redemption 2 loading screen (a photograph
@@ -187,7 +197,7 @@ phone width. This caused a real bug — see §6.
 These are the expensive ones. Each is also written up in the relevant
 `params.js` header.
 
-1. **Stamp type rendered as a flat blue rectangle.** The first rAF timestamp
+1. **Transit (then Stamp type) rendered as a flat blue rectangle.** The first rAF timestamp
    can predate the `performance.now()` captured in `start()`, so the first
    delta is negative, `acc` goes just below zero, `Math.floor` of a small
    negative is `-1`, and `worlds[-1]` is undefined. Fixed with
@@ -309,8 +319,8 @@ Each `params.js` opens with a full written-up mechanism. Short form:
 | **Tumble** | rhombille; `tone[(k + g) % 3]`, generation closed-form from travelling fronts | the front carries the next palette |
 | **Marble** | two closed-form point transforms, 30Hz tick timeline | the clearing drop is just another drop |
 | **Moiré type** | the word is only where two rulings disagree | at zero divergence the field is uniform |
-| **Flood type** | global ramps + four constants per letter; 3D is one cosine | — |
-| **Stamp type** | text on bars walking a breakpoint track, stamping residue | incoming pass overlaps the outgoing by 12 frames |
+| **Leader** | global ramps + four constants per letter; 3D is one cosine | the count runs in order, stock flips each number |
+| **Transit** | text on bars walking a breakpoint track, stamping residue | incoming pass overlaps the outgoing by 12 frames |
 | **Ember type** | Doom's 1993 fire routine, seeded from the word's pixels | — |
 | **Echo trail** | ring buffer of stamped copies | — |
 

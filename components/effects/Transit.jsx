@@ -1,16 +1,16 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { StampType as Engine } from '@/lib/stamp/engine';
+import { Transit as Engine } from '@/lib/transit/engine';
 
 /**
- * Stamp type — a kinetic-type poster loop that repeats in a new world each
- * pass. Four lines on flat bars fly in one axis at a time, park to be read,
- * then scatter — and the next palette flies in before the last has left.
+ * Transit — a waybill crossing a customs hall, in a new world each pass.
+ * Four lines on inked bars hop in one axis at a time, park to be read, then
+ * leave — and the next document arrives before the last has gone.
  *
  * Display only: no pointer, no controls.
  */
-export default function StampType() {
+export default function Transit() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function StampType() {
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label="A looping kinetic-type poster. Four lines of type on flat highlight bars fly in from the edges in square hops, hold still to be read, then scatter off. Every moving line leaves chunky blocks of flat colour where it just was. Each pass repeats the choreography in a new palette with new words, and the passes overlap so their trails flood the screen as the colour changes."
+      aria-label="A looping customs document. Four lines of a waybill — a route, a consignment number, a date and a status such as In Transit or Cleared — hop in from the edges one axis at a time, stopping at two or three stations on the way, and each stop leaves a flat stamped impression behind that vanishes after a moment. The lines park together long enough to be read, then leave by another route as the next document arrives."
     />
   );
 }
