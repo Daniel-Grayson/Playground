@@ -82,8 +82,10 @@ Of these:
   `lib/lamp/figure.js`. Two earlier versions failed in opposite directions:
   swinging the artwork's frozen legs could only scissor (a gallop needs a
   knee and hock), and a horse built entirely from stroked limbs galloped but
-  looked like a dog. Only the legs are built, tapered like real legs with a
-  hock on the hind pair, keyed from Muybridge's gallop plates. The figure is
+  looked like a dog. Only the legs are built, with THREE segments each \u2014
+  upper, cannon and pastern \u2014 keyed from a gallop loop the user supplied.
+  The pastern is the one that matters: with only two segments there is no
+  fetlock, and the standing pose read as four posts. The figure is
   lit, then rasterised to a 30-row buffer and scaled up with smoothing off,
   because the user wants it pixelated. **Angle sign**: positive is toward
   the tail; get it backwards and the horse gallops in reverse. **Attached image files do
