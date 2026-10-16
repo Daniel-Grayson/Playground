@@ -52,14 +52,20 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Nine effects, in page order:** Relief, Loom, Tumble, Marble, Moiré type,
-Flood type, Stamp type, Ember type, Echo trail.
+**Ten effects, in page order:** Plate, Relief, Loom, Tumble, Marble, Moiré
+type, Flood type, Stamp type, Ember type, Echo trail.
 
 Of these:
 - **Flood type** and **Stamp type** were built to written specs the user
   supplied, verbatim from Arlan's style. Their params files are the spec.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
+- **Plate** recreates the Red Dead Redemption 2 loading screen (a photograph
+  developing from its own negative), studied from a screen recording the user
+  supplied, and made cursor-driven with an idle drift at the user's request.
+  Its photograph is a public-domain 1867 Timothy O'Sullivan plate, levelled
+  and cropped into `public/plate/carson-desert.jpg`; it is the only effect
+  that loads an asset.
 - **Ember type** and **Echo trail** predate all of that and are the only two
   still written against the `useCanvas` React hook rather than as engine
   classes.
@@ -131,7 +137,7 @@ lib/<name>/engine.js  the engine class
 
 ### The engine-class pattern (use this for anything new)
 
-Seven of the nine effects are a plain class with this surface:
+Eight of the ten effects are a plain class with this surface:
 
 ```js
 export class Thing {
@@ -158,6 +164,9 @@ recomputes from scratch each frame. This is what makes resize, tab-resume and
 the loop seam correct rather than approximately correct. Marble cannot be pure
 (it is a sequence of accumulated transforms) so it instead replays from tick 0
 whenever a seek goes backwards or jumps — same guarantee, different mechanism.
+Plate cannot be pure either: its state is the pointer's history. It has no
+`drawAt`; it runs fixed 60Hz ticks capped per frame, keeps its heat field in
+grid cells so a resize preserves it, and exposes `runFor(seconds)` for probes.
 
 ### Colour
 
@@ -287,12 +296,13 @@ and `cardVars` straight from the repo, maps slug to engine class, and
 reimplements the two React drivers in plain JS (~110 lines). Ember and Echo
 need a vanilla port of `useCanvas`.
 
-## 8. The nine effects
+## 8. The ten effects
 
 Each `params.js` opens with a full written-up mechanism. Short form:
 
 | | mechanism | transition |
 |---|---|---|
+| **Plate** | one photo, positive over its own negative with development as alpha; equal tonal span makes d = 0.5 uniform grey | the grey haze at the edge is the image being absent |
 | **Relief** | field frozen, only the lit elevation moves; the word is the contour at one height | sweep runs past both ends, the wrap is a dead frame |
 | **Loom** | five-end satin; the motif is float length 4 vs 1 | both sides reach 3, the motif is absent |
 | **Tumble** | rhombille; `tone[(k + g) % 3]`, generation closed-form from travelling fronts | the front carries the next palette |
