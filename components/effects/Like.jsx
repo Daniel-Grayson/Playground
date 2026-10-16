@@ -77,7 +77,7 @@ export default function LikeConfetti() {
       ref={canvasRef}
       style={{ cursor: 'pointer' }}
       role="img"
-      aria-label="A grey outline heart on a light grey ground. Pressing the card likes it: the heart is pulled in, a burst of pink, blue, purple and orange confetti breathes out and draws back in, and a filled pink heart lands in its place. After four seconds it returns to the outline."
+      aria-label="A grey outline heart on a light grey ground. Pressing the card likes it: the heart is pulled in, a burst of pink, blue, purple and orange confetti breathes out and draws back in, and a filled pink heart lands in its place. After two seconds it returns to the outline."
     />
   );
 }
