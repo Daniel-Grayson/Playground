@@ -52,7 +52,7 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Eleven effects, in page order:** Lamp, Plate, Leader, Relief, Loom, Transit,
+**Twelve effects, in page order:** Post, Lamp, Plate, Leader, Relief, Loom, Transit,
 Tumble, Marble, Moiré type, Ember type, Echo trail.
 
 **New cards go to the TOP of the feed.** A standing instruction from the
@@ -74,6 +74,11 @@ Of these:
   a parcel through customs has to collect a stamp at every stop.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
+- **Post** was built from a screen recording of loose vintage stamps the user
+  liked, re-subjected to cities. Eight engraved city stamps (`lib/post/`), each
+  one ink on cream; scenes are tone maps cut into line engraving once per
+  resize. The reference drags stamps; with no clicking allowed, the stamp
+  under the pointer lifts on hover and goes to the top of the pile.
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
   horse mark and the labels Home and Works at their request. The mark is the
   user's own horse, pasted from Figma as SVG and kept at `lib/lamp/horse.svg`;
