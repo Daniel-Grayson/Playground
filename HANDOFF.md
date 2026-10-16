@@ -79,9 +79,12 @@ Of these:
   is 0.8+), so cutting between them read as four horses flickering. The prance
   rocks the one pose about its hind hooves instead. **Attached image files do
   not reach the container — only pasted text does**, which is why the SVG
-  route was needed at all. It is a strip
-  rather than a tall card on purpose: it is a bar, and a tall frame left it
-  stranded in one corner. The horse prances on hover, also at their request.
+  route was needed at all. The composition is the
+  screenshot's own: a grey page, a dark panel inset from the top left with a
+  single rounded corner running off the right and bottom edges, and the bar at
+  the top of that panel. Colours and the panel's offsets were sampled from the
+  screenshot rather than guessed. It is the one card that carries three
+  colours instead of two, because the reference does. The horse prances on hover, also at their request.
 - **Plate** recreates the Red Dead Redemption 2 loading screen (a photograph
   developing from its own negative), studied from a screen recording the user
   supplied, and made cursor-driven at the user's request. Every 5s a ring of
