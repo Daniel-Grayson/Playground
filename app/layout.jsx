@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: { default: 'Vault — interactive studies', template: '%s — Vault' },
+  title: { default: 'Playground — interactive studies', template: '%s — Playground' },
   description:
     'A workshop of original interactive effects: typography, shaders, microinteractions and generative canvases. Each one is a self-contained React component with no dependencies.',
 };

@@ -15,8 +15,7 @@ export default function Home() {
           marginBottom: 32,
         }}
       >
-        <h1 style={{ fontSize: 15, fontWeight: 400, margin: 0, color: 'var(--text)' }}>Vault</h1>
-        <span className="mono">{EFFECTS.length}</span>
+        <h1 style={{ fontSize: 15, fontWeight: 400, margin: 0, color: 'var(--text)' }}>Playground</h1>
       </header>
 
       <Feed effects={EFFECTS} />
