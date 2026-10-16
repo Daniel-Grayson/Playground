@@ -10,6 +10,7 @@ function Placeholder() {
 
 const MAP = {
   'plate-develop': dynamic(() => import('./effects/PlateDevelop'), { ssr: false, loading: Placeholder }),
+  'lamp-nav': dynamic(() => import('./effects/Lamp'), { ssr: false, loading: Placeholder }),
   'relief-contour': dynamic(() => import('./effects/ReliefContour'), { ssr: false, loading: Placeholder }),
   'loom-damask': dynamic(() => import('./effects/LoomDamask'), { ssr: false, loading: Placeholder }),
   'tumble-blocks': dynamic(() => import('./effects/TumbleBlocks'), { ssr: false, loading: Placeholder }),

@@ -52,8 +52,8 @@ e6f6e57 Cut to four effects, add Stamp type, set in PP Mori
 7d724f4 Add Flood type
 ```
 
-**Ten effects, in page order:** Plate, Leader, Transit, Relief, Loom, Tumble,
-Marble, Moiré type, Ember type, Echo trail.
+**Eleven effects, in page order:** Plate, Leader, Transit, Lamp, Relief, Loom,
+Tumble, Marble, Moiré type, Ember type, Echo trail.
 
 Of these:
 - **Leader** and **Transit** began as `flood-type` and `stamp-type`, built to
@@ -70,6 +70,10 @@ Of these:
   a parcel through customs has to collect a stamp at every stop.
 - **Moiré type** was the first original, made after studying Arlan's work.
 - **Relief, Loom, Tumble, Marble** are originals from a later round.
+- **Lamp** was built from a screenshot the user supplied of a nav bar, with a
+  horse mark and the labels Home and Works at their request. It is a strip
+  rather than a tall card on purpose: it is a bar, and a tall frame left it
+  stranded in one corner. The horse prances on hover, also at their request.
 - **Plate** recreates the Red Dead Redemption 2 loading screen (a photograph
   developing from its own negative), studied from a screen recording the user
   supplied, and made cursor-driven at the user's request. Every 5s a ring of
@@ -148,7 +152,7 @@ lib/<name>/engine.js  the engine class
 
 ### The engine-class pattern (use this for anything new)
 
-Eight of the ten effects are a plain class with this surface:
+Nine of the eleven effects are a plain class with this surface:
 
 ```js
 export class Thing {
@@ -175,6 +179,11 @@ recomputes from scratch each frame. This is what makes resize, tab-resume and
 the loop seam correct rather than approximately correct. Marble cannot be pure
 (it is a sequence of accumulated transforms) so it instead replays from tick 0
 whenever a seek goes backwards or jumps — same guarantee, different mechanism.
+Lamp is a third exception, and the mildest: its state is the lamp's own
+position, damped toward a target. That is not accumulation in the sense
+purity protects against — a damped follower converges from wherever it is, so
+a resize and a tab-resume heal themselves in a few frames.
+
 Plate cannot be pure either: its state is the pointer's history. It has no
 `drawAt`; it runs fixed 60Hz ticks capped per frame, keeps its heat field in
 grid cells so a resize preserves it, and exposes `runFor(seconds)` for probes.
@@ -313,6 +322,7 @@ Each `params.js` opens with a full written-up mechanism. Short form:
 
 | | mechanism | transition |
 |---|---|---|
+| **Lamp** | one illumination field, sampled per glyph and per bitmap pixel; inverse-square | the stride ends on its own rest frame, so there is no settle tween |
 | **Plate** | one photo, positive over its own negative with development as alpha; equal tonal span makes d = 0.5 uniform grey | a heat ring; each cell swaps plate as it passes d = 0.5, where it shows no image |
 | **Relief** | field frozen, only the lit elevation moves; the word is the contour at one height | sweep runs past both ends, the wrap is a dead frame |
 | **Loom** | five-end satin; the motif is float length 4 vs 1 | both sides reach 3, the motif is absent |
