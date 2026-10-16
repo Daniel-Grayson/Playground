@@ -77,12 +77,12 @@ Of these:
 - **Lamp** was built from a screenshot the user supplied of a nav bar, with a
   horse mark and the labels Home and Works at their request. The mark is the
   user's own horse, pasted from Figma as SVG and kept at `lib/lamp/horse.svg`;
-  `params.js` carries its path verbatim and the engine fills it with a
-  radial gradient centred on the lamp. **It was a 28x20 bitmap first, on the
-  reasoning that the light had to cross it pixel by pixel \u2014 that was wrong**:
-  a grid is the same smooth field measured at a few hundred points and then
-  rounded, so the vector path lit by a gradient is both truer to the law and
-  the user's actual artwork. They sent
+  `params.js` carries its path verbatim. The engine articulates and lights
+  the vector, then rasterises the RESULT to a 20-row buffer and scales it up
+  with smoothing off, so the mark reads as pixel art while the geometry
+  underneath is real. The user asked for the pixel look back after seeing a
+  smooth version; rasterising the animation rather than the artwork is what
+  gives them both, since a bitmap of a fixed pose has no leg in it to swing. They sent
   four horses, but the four are different illustrations rather than one horse
   in four positions (silhouette overlap only ~0.5, where a real stride cycle
   is 0.8+), so cutting between them read as four horses flickering. Instead each leg is clipped out of the single path and
@@ -344,7 +344,7 @@ Each `params.js` opens with a full written-up mechanism. Short form:
 
 | | mechanism | transition |
 |---|---|---|
-| **Lamp** | one inverse-square field: sampled per glyph, poured continuously through the mark | the stride ends on its own rest frame, so there is no settle tween |
+| **Lamp** | one inverse-square field: sampled per glyph, poured through the mark, then rasterised | the stride ends on its own rest frame, so there is no settle tween |
 | **Plate** | one photo, positive over its own negative with development as alpha; equal tonal span makes d = 0.5 uniform grey | a heat ring; each cell swaps plate as it passes d = 0.5, where it shows no image |
 | **Relief** | field frozen, only the lit elevation moves; the word is the contour at one height | sweep runs past both ends, the wrap is a dead frame |
 | **Loom** | five-end satin; the motif is float length 4 vs 1 | both sides reach 3, the motif is absent |
