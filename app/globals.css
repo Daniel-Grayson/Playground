@@ -230,7 +230,15 @@ a { color: inherit; }
   .stage { aspect-ratio: 4 / 3; }
 }
 
-canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+/* pan-y, not none. A canvas with touch-action: none swallows the vertical
+   swipe, and these cards are full-width and stacked: at `none` the feed was
+   63% unscrollable on a phone, because every card ate the gesture and only
+   the 32px gaps between them would move the page. Reserving the vertical
+   axis for the document costs the effects nothing — the only two that drag,
+   Post and Wheel, had each already opted back to pan-y on their own. An
+   effect that genuinely needs the vertical drag has to opt into `none`
+   itself, and own the scroll trap that comes with it. */
+canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
 
 @media (prefers-reduced-motion: reduce) {
   .card { transition: none; }

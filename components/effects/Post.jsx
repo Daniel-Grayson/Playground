@@ -96,7 +96,6 @@ export default function PostCities() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ touchAction: 'pan-y' }}
       role="img"
       aria-label="An album page of loose postage stamps, each a photograph of a city printed in one colour: New York, Paris, Rio, Tokyo, Istanbul, Sydney, London and Cairo. Press on a stamp to pick it up and move it anywhere on the page; it lifts, squares up and casts a longer shadow, and stays on top of the pile where it is put down."
     />

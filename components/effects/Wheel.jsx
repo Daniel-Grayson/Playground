@@ -88,7 +88,6 @@ export default function WordWheel() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ touchAction: 'pan-y' }}
       role="img"
       aria-label="A dial of words on black, each word set along its own spoke of a large ring whose centre is off the left edge: Fibroscan, Haematocrit, Gamma-GT, Apolipoprotein B and others, all small and white. The ring turns steadily; the word under the pointer grows and turns orange, and pressing and dragging round the ring spins it, flinging it faster."
     />
