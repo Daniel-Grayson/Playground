@@ -33,33 +33,12 @@
   --radius: 14px;
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   --sans: 'PP Mori', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #0c0c0b;
-    --surface: #141413;
-    --surface-2: #1c1c1a;
-    --border: #262523;
-    --border-strong: #37352f;
-    --text: #f5f4f0;
-    --text-2: #a4a199;
-    --text-3: #6f6d66;
-    --accent: #f5f4f0;
-  }
-}
-
-:root[data-theme='dark'] {
-  --bg: #0c0c0b;
-  --surface: #141413;
-  --surface-2: #1c1c1a;
-  --border: #262523;
-  --border-strong: #37352f;
-  --text: #f5f4f0;
-  --text-2: #a4a199;
-  --text-3: #6f6d66;
-  --accent: #f5f4f0;
+  /* Light only, on purpose: the whole piece is built on a white page and the
+     cards carry their own palettes. There used to be a dark token set here,
+     but layout.jsx pins data-theme="light" on <html>, so none of it could
+     ever match and it only read as if the page had a dark mode. To add one,
+     drop that attribute and define the dark tokens again. */
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -137,99 +116,6 @@ a { color: inherit; }
   color: var(--text);
 }
 
-/* --- controls --------------------------------------------------------- */
-
-.panel {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 16px;
-}
-
-.ctl {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 8px 12px;
-  margin-bottom: 14px;
-}
-
-.ctl:last-child { margin-bottom: 0; }
-
-.ctl-label {
-  font-size: 12.5px;
-  color: var(--text-2);
-}
-
-.ctl-value {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  font-variant-numeric: tabular-nums;
-}
-
-.ctl input[type='range'] {
-  grid-column: 1 / -1;
-  width: 100%;
-  accent-color: var(--text);
-  height: 18px;
-}
-
-.ctl input[type='text'] {
-  grid-column: 1 / -1;
-  width: 100%;
-  font-family: var(--mono);
-  font-size: 13px;
-  padding: 8px 10px;
-  color: var(--text);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.ctl input[type='text']:focus-visible,
-.btn:focus-visible,
-.card:focus-visible {
-  outline: 2px solid var(--text);
-  outline-offset: 2px;
-}
-
-.btn {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-}
-
-.btn:hover { background: var(--surface-2); }
-
-.stage {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface-2);
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-}
-
-/* min-height and aspect-ratio together resolve by widening the box, which
-   overflows a narrow viewport — so the floor only applies once there is room
-   for it. */
-@media (min-width: 761px) {
-  .stage { min-height: 320px; }
-}
-
-@media (max-width: 760px) {
-  .stage { aspect-ratio: 4 / 3; }
-}
-
 /* pan-y, not none. A canvas with touch-action: none swallows the vertical
    swipe, and these cards are full-width and stacked: at `none` the feed was
    63% unscrollable on a phone, because every card ate the gesture and only
@@ -239,19 +125,3 @@ a { color: inherit; }
    effect that genuinely needs the vertical drag has to opt into `none`
    itself, and own the scroll trap that comes with it. */
 canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
-
-@media (prefers-reduced-motion: reduce) {
-  .card { transition: none; }
-  .card:hover { transform: none; }
-}
-
-.studio {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 270px);
-  gap: 16px;
-  align-items: start;
-}
-
-@media (max-width: 860px) {
-  .studio { grid-template-columns: minmax(0, 1fr); }
-}

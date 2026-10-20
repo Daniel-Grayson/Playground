@@ -12,10 +12,16 @@ export default function Feed({ effects }) {
     <div className="feed">
       {effects.map((e) => {
         const vars = cardVars(e.card.bg, e.card.ink, e.card.ac);
+        // Cards wider than the 3/2 the phone floors them to get marked, so
+        // globals.css can apply that floor. The rule has always been there;
+        // nothing set the attribute, so on a 390px screen the widest cards
+        // came out 358x165 instead of the ~239px tall the rule intends.
+        const [aw, ah] = e.aspect.split('/').map(Number);
         return (
           <section key={e.slug}>
             <div
               className="feed-card"
+              data-wide={aw / ah > 1.6 ? 'true' : undefined}
               style={{
                 ...vars,
                 aspectRatio: e.aspect.replace('/', ' / '),

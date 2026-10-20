@@ -1,8 +1,8 @@
 import { EFFECTS } from '@/lib/registry';
 import Feed from '@/components/Feed';
 
-// Everything is on this one screen. Opening an effect is an overlay, not a
-// route — there is no second page to navigate to.
+// Everything is on this one screen. Nothing is clickable: there is no detail
+// view, no overlay and no second route to navigate to.
 export default function Home() {
   return (
     <main className="shell" style={{ paddingTop: 96, paddingBottom: 96 }}>
